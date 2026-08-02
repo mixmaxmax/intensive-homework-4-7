@@ -10,7 +10,6 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.ObjectMapper;
@@ -21,7 +20,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @WebMvcTest(NotificationController.class)
-@TestPropertySource(properties = "mail.recipient.test=test")
 class NotificationControllerTest {
 
     @Autowired
@@ -53,11 +51,9 @@ class NotificationControllerTest {
             body.capture()
         );
 
-        assertThat(recipient.getValue()).isEqualTo("test");
+        assertThat(recipient.getValue()).isEqualTo(dto.getEmail());
         assertThat(subject.getValue()).isEqualTo("Создание аккаунта");
-        assertThat(body.getValue())
-            .contains("user@mail.com")
-            .contains("Вы успешно создали аккаунт");
+        assertThat(body.getValue()).contains("Здравствуйте! Ваш аккаунт на сайте www.site.com был успешно создан.");
     }
     @Test
     void sendEmailDelete_Success() throws Exception {
@@ -79,12 +75,9 @@ class NotificationControllerTest {
                 subject.capture(),
                 body.capture()
         );
-
-        assertThat(recipient.getValue()).isEqualTo("test");
+        assertThat(recipient.getValue()).isEqualTo(dto.getEmail());
         assertThat(subject.getValue()).isEqualTo("Удаление аккаунта");
-        assertThat(body.getValue())
-            .contains("user@mail.com")
-            .contains("Вы успешно удалили аккаунт");
+        assertThat(body.getValue()).contains("Здравствуйте! Ваш аккаунт был удалён.");
     }
 
     @Test

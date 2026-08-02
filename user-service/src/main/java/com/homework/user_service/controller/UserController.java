@@ -1,5 +1,6 @@
 package com.homework.user_service.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.homework.user_service.dto.UserRequestDto;
 import com.homework.user_service.dto.UserResponseDto;
@@ -27,14 +28,14 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponseDto createUser(@RequestBody UserRequestDto request) {
+    public UserResponseDto createUser(@Valid @RequestBody UserRequestDto request) {
         return userService.createUser(request);
     }
 
     @PutMapping("/{id}")
     public UserResponseDto updateUser(
             @PathVariable Integer id,
-            @RequestBody UserRequestDto request) {
+            @Valid @RequestBody UserRequestDto request) {
         return userService.updateUser(id, request);
     }
 

@@ -16,8 +16,7 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @TestPropertySource(properties = {
-        "mail.recipient.test=testRecipient",
-        "spring.kafka.bootstrap-servers=localhost:9092",
+        "spring.kafka.bootstrap-servers=localhost:9092"
 })
 class KafkaConsumerServiceTest {
 
@@ -45,11 +44,9 @@ class KafkaConsumerServiceTest {
             body.capture()
         );
 
-        assertThat(recipient.getValue()).isEqualTo("testRecipient");
+        assertThat(recipient.getValue()).isEqualTo(dto.getEmail());
         assertThat(subject.getValue()).isEqualTo("Создание аккаунта");
-        assertThat(body.getValue())
-            .contains("user@mail.com")
-            .contains("Вы успешно создали аккаунт");
+        assertThat(body.getValue()).contains("Здравствуйте! Ваш аккаунт на сайте www.site.com был успешно создан.");
     }
 
     @Test
@@ -70,10 +67,8 @@ class KafkaConsumerServiceTest {
             body.capture()
         );
 
-        assertThat(recipient.getValue()).isEqualTo("testRecipient");
+        assertThat(recipient.getValue()).isEqualTo(dto.getEmail());
         assertThat(subject.getValue()).isEqualTo("Удаление аккаунта");
-        assertThat(body.getValue())
-            .contains("user@mail.com")
-            .contains("Вы успешно удалили аккаунт");
+        assertThat(body.getValue()).contains("Здравствуйте! Ваш аккаунт был удалён.");
     }
 }

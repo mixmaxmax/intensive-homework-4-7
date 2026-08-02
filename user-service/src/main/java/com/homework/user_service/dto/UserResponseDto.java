@@ -1,15 +1,24 @@
 package com.homework.user_service.dto;
 
-import lombok.Setter;
-import lombok.Getter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import lombok.Data;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 public class UserResponseDto {
     private Integer id;
+
+    @NotBlank
     private String name;
+
+    @Email
+    @NotBlank
     private String email;
+
+    @Positive
     private Integer age;
+
     private LocalDateTime createdAt;
 }
