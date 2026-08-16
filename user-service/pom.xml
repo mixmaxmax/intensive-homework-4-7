@@ -109,6 +109,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Starter Netflix Eureka Client » 5.0.2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>5.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Spring Cloud Starter Config » 5.0.4 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+            <version>5.0.4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Spring Cloud Starter Bootstrap » 5.0.2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>5.0.2</version>
+            <scope>compile</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
