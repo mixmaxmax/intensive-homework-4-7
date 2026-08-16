@@ -1,5 +1,9 @@
 server.port=8080
 
+spring.application.name=user-service
+
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
 spring.datasource.url=jdbc:postgresql://localhost:5433/userdb
 spring.datasource.username=${DB_USER}
 spring.datasource.password=${DB_PASSWORD}
